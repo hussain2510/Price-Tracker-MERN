@@ -127,3 +127,25 @@
     right:unset
     
 }}
+@media screen and (max-width:1024px) and (min-width:600px)
+{
+  .home-subheading{
+     width:100vw;
+  }
+  .step1{
+    top:700px;
+    
+    
+    
+}
+.step2{
+    margin-top: 50px;
+    top:650px;
+ 
+}
+.step3{
+    top:700px;
+    margin-top: 50px;
+}
+  
+}

@@ -7,7 +7,7 @@
        
 }
 .register{
-    width:50%;
+    width:100vw;
     text-align: center;
     position: relative;
     top:30%;
@@ -43,4 +43,16 @@ input[type=password],select{
 .login-button1{
     position: relative;
     top:15px;
+}
+@media screen and (max-width:610px)
+{
+    .register{
+        text-align: center;
+    }
+    .forms-label{
+        margin: 0 auto;
+    }
+    .forms-control{
+        margin: 0 auto;
+    }
 }
