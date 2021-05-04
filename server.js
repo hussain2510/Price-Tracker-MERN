@@ -51,6 +51,6 @@ if(process.env.NODE_ENV === 'production')
 //     console.log("home page")
 // })
 
-app.listen(process.env.LOCAL_PORT || 4000,function(){
+app.listen(process.env.PORT || 4000,function(){
     console.log("server listening at 4000")
 })
