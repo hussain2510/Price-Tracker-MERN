@@ -67,7 +67,10 @@ exports.login = (req, res) => {
 async function sendNotification(details){
   console.log("send mail");
   var transporter=nodemailer.createTransport({
-      service:'gmail',
+    host:'smtp.gmail.com',
+    port:587,
+    ignoreTLS:false,
+    secure:false,
       auth:{
           user:'broforfunofficial',
           pass:process.env.Email_Password
