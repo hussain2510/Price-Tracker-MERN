@@ -69,7 +69,7 @@ async function sendNotification(details){
   var transporter=nodemailer.createTransport({
       service:'gmail',
       auth:{
-          user:'broforfunofficial@gmail.com',
+          user:'broforfunofficial',
           pass:process.env.Email_Password
 
       }
