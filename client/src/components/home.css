@@ -1,0 +1,96 @@
+.home-heading-title{
+    font-family: 'Libre Baskerville', serif;
+    color:white;
+    font-weight: 700;
+    font-size:80px;
+    position:relative;
+    width:100%;
+    top:150px;
+    text-align: center;
+    animation: drop 1.5s ease;
+    
+}
+.heading-title-span{
+    color:#3f51b5;
+    
+}
+.home-heading{
+    position: relative;
+    text-align: center;
+}
+.home-subheading{
+    color:#84a9ac;
+    position: relative;
+    top:150px;
+    text-align: center;
+    width: 50%;
+    font-size: 20px;
+    margin: 0 auto;
+}
+.register-button{
+    color: white;
+    position: relative;
+    top:80px;
+    border: 1px solid rgba(63, 81, 181, 0.5)
+}
+.login-button{
+    position: relative;
+    top:80px;
+}
+.button-heading{
+    text-align: center;
+}
+.get-started{
+    position: relative;
+    top:180px;
+    margin: 0 auto;
+
+}
+@media screen and (max-width:896px)
+{
+  .home-heading-title{
+     font-size: 50px;
+  }
+  .step1-heading{
+      font-size: 50px;
+  }
+  
+}
+@media screen and (max-width:896px)
+{
+  .home-subheading{
+     width:100vw;
+  }
+  .step1{
+    top:650px;
+    
+    
+    
+}
+.step2{
+    
+    top:600px;
+ 
+}
+.step3{
+    top:650px;
+}
+  
+}
+@media screen and (max-width:560px)
+{
+    .register-button{
+        top:100px;
+        right:11px;
+    }
+}
+@keyframes drop{
+    0%{
+        opacity: 0;
+        transform: translateY(-80%);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(2px);
+    }
+}

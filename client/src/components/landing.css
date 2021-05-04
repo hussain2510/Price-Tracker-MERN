@@ -1,0 +1,27 @@
+
+.header{
+    background-color: #9df3c4;
+}
+.forms-label1{
+    
+    font-family: 'Libre Baskerville', serif;
+    color:black;
+    font-weight: 700;
+    font-size:20px;
+}
+.login-button3{
+    width: 100px;
+    border: 0px solid rgba(63, 81, 181, 0.5);
+    border-radius: 15px;
+}
+.landing{
+    position: relative;
+    
+}
+.logout-button{
+    position:relative;
+    top:3px;
+    margin-left: 5px;
+    border: 0px solid rgba(63, 81, 181, 0.5);
+    border-radius: 20px;
+}

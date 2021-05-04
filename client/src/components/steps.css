@@ -1,0 +1,55 @@
+/* .steps{
+    position: relative;
+    top:250px;
+    width:100%
+} */
+.step1{
+    position:absolute;
+    top:550px;
+    left:15px;
+    width:25%;
+    text-align: center;
+    
+    
+}
+.step2{
+    position:absolute;
+    top:500px;
+    margin-left:auto;
+    margin-right:auto;
+    right:0px;
+    left:0px;
+    width:25%;
+    text-align: center;
+ 
+}
+.step3{
+    position:absolute;
+    top:550px;
+    right:10px;
+    width:25%;
+    text-align: center;
+    
+}
+.step1-heading{
+    font-family: 'Libre Baskerville', serif;
+    font-weight: 700;
+    font-size: 80px;
+    animation: head 1.5s ease;
+      
+}
+.step1-subheading{
+    color: #84a9ac;
+    font-size: 20px;
+    margin: 0 auto;
+}
+@keyframes head{
+    0%{
+        opacity: 0;
+        transform: translateX(-80%);
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(2px);
+    }
+}
