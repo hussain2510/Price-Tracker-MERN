@@ -9,8 +9,8 @@ const path = require('path');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-mongoose.connect("mongodb+srv://admin-hussain:"+process.env.MongoDb_Password+"@cluster0.xqekq.mongodb.net/PriceTrackerDB",{useNewUrlParser:true,useUnifiedTopology: true});
-
+const url=process.env.MONGODB_URL
+mongoose.connect(url,{useNewUrlParser:true,useUnifiedTopology: true});
 mongoose.Promise = global.Promise;
 mongoose.set('useCreateIndex', true);
 
