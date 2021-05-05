@@ -10,7 +10,7 @@ const sgMail=require("@sendgrid/mail");
 sgMail.setApiKey(process.env.ADMIN_EMAIL_API_KEY);
 let imageLocation= "../../webimage.png";
 exports.login = (req, res) => {
-  console.log(req.body)
+
   let data=req.body;
     User.findOne({email:data.email},function(err,user){
     if(err)
@@ -79,7 +79,7 @@ async function sendNotification(details){
   let textToSend=JSON.stringify(details);
   let htmlText=`<h2>Thanks for registering with us.You are just one step away from purchasing product in your budget</h2><br></br>
   <h2>Step2:Copy your Product Link From Amazon,Set a target Price then Add it.</h2><br></br>
-  <h3>As soon as your Product reaches your target pirce we will notify you</h3><br></br>
+  <h3>As soon as your Product reaches your target price we will notify you</h3><br></br>
   <h4>Founder:</h4>
   <h6>Hussain Ahmad</h6>
   `;  //``for multiline string
