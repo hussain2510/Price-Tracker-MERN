@@ -41,9 +41,9 @@ app.use(cors());
 if(process.env.NODE_ENV === 'production')
 {
   app.use(express.static("client/build"));
-  // app.get('*',(req,res)=>{
-  //   res.sendFile(path.resolve(__dirname,'client','build','index.html'))
-  // })
+  app.get('*',(req,res)=>{                    //if any request that is made to derver is not api like /create or/loginUser then we will send a html file that will prevent /get cannot find
+    res.sendFile(path.resolve(__dirname,'client','build','index.html'))
+  })
 }
 ////path.join will concatenate __dirname which is the directory name of the current file concatenated with values of some and dir with platform-specific separator.
 // we can concatenate using + or use join
