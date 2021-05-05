@@ -4,6 +4,8 @@ const nodemailer=require("nodemailer");
 require('dotenv').config();
 const SingleItem=require("../models/singleItemModel");
 const User=require("../models/userModel");
+const sgMail=require("@sendgrid/mail");
+sgMail.setApiKey(process.env.ADMIN_EMAIL_API_KEY);
 const Items=require("../models/itemsModel");
 var arguments=process.argv;
     module.exports.deleteItem=(req,res)=>{
@@ -51,6 +53,20 @@ var arguments=process.argv;
         await startTracking(url).then(result => {
             console.log(result)
             if(result){
+                if(result.priceInt<=target_price)
+                {
+                    User.findById(user_id,function(err,user){
+                        let newObj={
+                            title:result.name,
+                            price:result.priceInt,
+                            link:url,
+                            email:user.email
+                        }
+                        sendNotification(newObj);
+
+                    })
+                   
+                }
                 console.log("stage1");
             const newItem=new SingleItem({
                 name:result.name,
@@ -192,26 +208,29 @@ var arguments=process.argv;
 
     //for notification
     async function sendNotification(newObj){
-        var transporter=nodemailer.createTransport({
-            service:'gmail',
-            auth:{
-                user:'broforfunofficial@gmail.com',
-                pass:process.env.Email_Password
+        // var transporter=nodemailer.createTransport({
+        //     service:'gmail',
+        //     auth:{
+        //         user:'broforfunofficial@gmail.com',
+        //         pass:process.env.Email_Password
 
-            }
-        });
+        //     }
+        // });
         let textToSend='Price dropped to ' + newObj.price;
         let htmlText=`<h1>Thanks For Hoping With Us.Finally Price is Dropped</h1><br></br>
         <h2>now its your time go and buy the product link below</h2><br></br>
         <a href=\"${newObj.link}\">Link</a>`;
-        let info=await transporter.sendMail({
-            from:'"Price Tracker" <broforfunofficial@gmail.com>',
+        let info={
+            from:'broforfunofficial@gmail.com',
             to:""+newObj.email,
             subject:'Price dropped to '+newObj.price,
             text:textToSend,
             html:htmlText
-        });
-        console.log("Message send: %s",info.messageId);
+        };
+        // console.log("Message send: %s",info.messageId);
+        sgMail.send(info).then(res=>{console.log(res)}).catch(err => {
+            console.log(err);
+          });
         
     }
 

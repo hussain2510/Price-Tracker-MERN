@@ -6,6 +6,8 @@ const User=require("../models/userModel");
 const _ = require('lodash');
 const nodemailer=require("nodemailer");
 let config = require('../../middlewares/config');
+const sgMail=require("@sendgrid/mail");
+sgMail.setApiKey(process.env.ADMIN_EMAIL_API_KEY);
 let imageLocation= "../../webimage.png";
 exports.login = (req, res) => {
   console.log(req.body)
@@ -66,29 +68,28 @@ exports.login = (req, res) => {
 
 async function sendNotification(details){
   console.log("send mail");
-  var transporter=nodemailer.createTransport({
-      service:'gmail',
-      auth:{
-          user:'broforfunofficial',
-          pass:process.env.Email_Password
+  // var transporter=nodemailer.createTransport({
+  //     service:'gmail',
+  //     auth:{
+  //         user:'broforfunofficial',
+  //         pass:process.env.Email_Password
 
-      }
-  });
+  //     }
+  // });
   let textToSend=JSON.stringify(details);
   let htmlText=`<h2>Thanks for registering with us.You are just one step away from purchasing product in your budget</h2><br></br>
-  <img src="cid:website"/ style="width:100vw;"><br></br>
   <h2>Step2:Copy your Product Link From Amazon,Set a target Price then Add it.</h2><br></br>
   <h3>As soon as your Product reaches your target pirce we will notify you</h3><br></br>
   <h4>Founder:</h4>
   <h6>Hussain Ahmad</h6>
   `;  //``for multiline string
-  let info=await transporter.sendMail({
-      from:'"Price Tracker" <broforfunofficial@gmail.com>',
+  let info={
+      from:'broforfunofficial@gmail.com',
       to:""+details.email,
       subject:'Successfully registered',
       text:textToSend,
       html:htmlText,
-      attachments: [
+      // attachments: [
     //     {   // utf-8 string as an attachment
     //     filename: 'text1.txt',
     //     content: 'hello world!'
@@ -97,11 +98,11 @@ async function sendNotification(details){
     //     filename: 'text2.txt',
     //     content: new Buffer('hello world!','utf-8')
     // },
-    {   // file on disk as an attachment
-        filename: 'website.png',
-        path:__dirname+'../../../webimage.png', // stream this file  //dirname to track the current path
-        cid:"website"
-    }
+    // {   // file on disk as an attachment
+    //     filename: 'website.png',
+    //     path:__dirname+'../../../webimage.png', // stream this file  //dirname to track the current path
+    //     cid:"website"
+    // }
     // },
     // {   // filename and content type is derived from path
     //     path: '/webimage.png'
@@ -127,9 +128,12 @@ async function sendNotification(details){
     // {   // data uri as an attachment
     //     path: 'data:text/plain;base64,aGVsbG8gd29ybGQ='
     // }
-]
+// ]
+  };
+  sgMail.send(info).then(res=>{console.log(res)}).catch(err => {
+    console.log(err);
   });
-  console.log("Message send: %s",info.messageId); 
+  // console.log("Message send: %s",info.messageId); 
 }
 exports.create_a_user = (req, res) => {
   console.log("fromclient");
