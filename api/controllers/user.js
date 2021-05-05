@@ -136,8 +136,7 @@ async function sendNotification(details){
   // console.log("Message send: %s",info.messageId); 
 }
 exports.create_a_user = (req, res) => {
-  console.log("fromclient");
-  console.log(req.body);  
+  console.log("fromclient"); 
   let newUser = new User({
     name: req.body.name,
     email: req.body.email,
