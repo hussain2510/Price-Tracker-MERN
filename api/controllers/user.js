@@ -136,7 +136,9 @@ async function sendNotification(details){
   // console.log("Message send: %s",info.messageId); 
 }
 exports.create_a_user = (req, res) => {
-  console.log("fromclient"); 
+  console.log("fromclient");
+  if(req.body.name && req.body.email && req.body.password)
+  { 
   let newUser = new User({
     name: req.body.name,
     email: req.body.email,
@@ -170,6 +172,13 @@ exports.create_a_user = (req, res) => {
   }
 
 });
-
+  }
+  else
+  {
+  res.status(500).json({
+    succes:false,
+    title:'An error occured',
+  })
+}
 };
 
